@@ -1,6 +1,5 @@
 .itemPreview__container {
     width: 100%;
-    height: 100%;
     align-items: stretch;
 }
 
@@ -9,6 +8,7 @@
     width: 100%;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 0 2px 0 rgb(0 0 0 / 30%);
 }
 
 .itemPreview__image {
@@ -40,6 +40,7 @@
 }
 
 .itemPreview__details-container {
+    margin-top: 4px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -53,6 +54,10 @@
 
 .itemPreview__details-user_image {
     border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .itemPreview__details-location {

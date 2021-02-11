@@ -6,7 +6,7 @@ export default class User {
     _imageURLs: ImageURLs
 
     constructor(responseJSON: ResponseJSON) {
-        this._name = responseJSON.name.first + responseJSON.name.last
+        this._name = `${responseJSON.name.first} ${responseJSON.name.last[0]}.`
         this._uuid = responseJSON.login.uuid
         this._location = responseJSON.location
         this._signUpDate = new Date()

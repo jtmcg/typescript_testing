@@ -28,8 +28,14 @@ const Home: React.FC = () => {
         setLoggedIn(false)
     }
 
-    const onCreateAccount = () => {
-        // auth0 integration incoming???
+    const onCreateAccount = async () => {
+        let requester = new RequestService(`https://randomuser.me/api/?nat=US`);
+        await requester.getRequest()
+        if (requester.response.results) {
+            setUser(new User(requester.response.results[0]))
+            setLoggedIn(true)
+        }
+
 
     }
 
@@ -61,12 +67,12 @@ const Home: React.FC = () => {
             }
             <main>
                 <div className="hero">
-                    <h1>{ (user && user.name)? `Hello, ${user.name}. Welcome back!` : 'Hello and welcome!'}</h1>
+                    <h1>{ (user && user.name)? `Hello, ${user.name} Welcome back!` : 'Hello and welcome!'}</h1>
                     <p>You've clicked the button {count} times</p>
                     <Button primary label={'Click Me'} onClick={() => setCount(count + 1)} />    
                 </div>
                 <div className="content">
-                    {posterList ? 
+                    {(loggedIn && posterList) ? 
                         posterList?.map((poster, idx) => (
                             <ItemPreview 
                                 key={ poster.uuid }
@@ -76,7 +82,7 @@ const Home: React.FC = () => {
                                 user={ poster }
                             />)
                         )
-                    : 'Loading...' }
+                    : 'Placeholder for content' }
                 </div>
             </main>
         </div>
