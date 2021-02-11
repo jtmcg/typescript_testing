@@ -5,6 +5,15 @@ import User from './lib/user'
 import { ItemPreview } from './stories/ItemPreview'
 import RequestService from './services/RequestService'
 
+/**
+ * TODO:
+ * Fix your damn environment!!
+ * Toggle more than just the header for loggedIn vs loggedOut state
+ * Build Post or Listing object for each itemPreview that contains the relevant posting info
+ * Build a posting page to show posting info
+ * auth0 integration for logging in/out
+ */
+
 const Home: React.FC = () => {
     const [count, setCount] = useState<number>(0)
     const [loggedIn, setLoggedIn] = useState<boolean>(false)
@@ -20,12 +29,12 @@ const Home: React.FC = () => {
     }
 
     const onCreateAccount = () => {
-        //let newUserResponse = getPosterList(1)
+        // auth0 integration incoming???
 
     }
 
     const getPosterList = async (number: number) => {
-        let requester = new RequestService(`https://randomuser.me/api/?results=${number}`)
+        let requester = new RequestService(`https://randomuser.me/api/?nat=us&results=${number}`)
         await requester.getRequest()
         if (requester.response.results) {
             setPosterList([...posterList, ...requester.response.results.map(userData => new User(userData))])
